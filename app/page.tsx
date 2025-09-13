@@ -1,103 +1,111 @@
+// app/page.tsx
 import Image from "next/image";
+import { Home, CalendarCheck, Images, User2, Calendar1, Calendar } from "lucide-react";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="mx-auto max-w-sm bg-white min-h-screen shadow-sm">
+      <section className="relative">
+  <div className="h-35 bg-gradient-to-b from-pink-200 to-pink-50 flex items-center justify-center">
+    
+    <Image
+      src="/logo.png"
+      alt="logo"
+      width={160}
+      height={120}
+      className="object-contain"
+    />
+  </div>
+   <div className="h-2" />
+   <img src="/card.png" alt="" />
+  <div className="h-5" />
+</section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      
+      <section className="px-4 mt-6">
+        <h2 className="text-sm font-semibold text-gray-600 mb-3">ผลงาน</h2>
+        <div className="rounded-3xl border border-pink-100 shadow-sm bg-white p-3">
+          <div className="grid grid-cols-3 gap-3">
+            {["/work1.jpg", "/work2.jpg", "/work3.jpg"].map((src, i) => (
+              <div
+                key={i}
+                className="aspect-square overflow-hidden rounded-2xl ring-1 ring-pink-100"
+              >
+                <Image src={src} alt={`work-${i + 1}`} width={300} height={300} className="h-full w-full object-cover" />
+              </div>
+            ))}
+          </div>
+          <div className="text-right mt-2">
+            <a className="text-xs text-pink-600 hover:underline" href="#">
+              เพิ่มเติม
+            </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      </section>
+
+    
+      <section className="px-4 mt-6 pb-24 ">
+        <div className="grid grid-cols-2 gap-4">
+          <IdeaCard
+            img="/Idea1.png"
+            title="มัดรวม 50+ ไอเดียลายเล็บฮาโลวีนสุดเก๋ เอาใจสายทำเล็บ"
+            desc="สำหรับใครที่กำลังมองหาไอเดียลายเล็บทำต้อนรับวันฮาโลวีนวันนี้เราเอามาฝากเพื่อน ๆ กันค่ะ 
+            เพราะเดือนตุลาคมมีเทศกาลประจำเดือนอย่าง “ฮาโลวีน” ที่กำลังจะมาถึง"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <IdeaCard
+            img="/Idea2.png"
+            title="ไอเดียทาเล็บ ลายคริสต์มาส 2024"
+            desc="จะถึงเทศกาลแห่งความสนุกสนานอย่าง คริสต์มาส ทั้งที ก็ต้องมาดู ไอเดียเล็บ ธีมคริสต์มาส🎄 สุดคิ้วท์ ไปทำรับวันคริสต์มาสกันซะหน่อย! 
+            ใครที่เตรียมเสื้อสีเขียวสีแดงไว้ใส่ในวันคริสต์มาสนี้แล้วก็อย่าลืมเพิ่มความสนุกสนานด้วยการทาเล็บเป็นลายคริสต์มาสต่างๆ กันนะคะ"
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </div>
+      </section>
+      <BottomNav />
+    </main>
+  );
+}
+
+function IdeaCard({
+  img,
+  title,
+  desc,
+}: {
+  img: string;
+  title: string;
+  desc: string;
+}) {
+  return (
+    <article className="rounded-3xl border border-gray-100 shadow-sm overflow-hidden bg-white">
+      <div className="relative h-28 w-full">
+        <Image src={img} alt={title} fill className="object-cover" />
+      </div>
+      <div className="p-4">
+        <h3 className="font-semibold text-gray-800">{title}</h3>
+        <p className="text-sm text-gray-500 mt-1 leading-relaxed line-clamp-3">
+          {desc}
+        </p>
+      </div>
+    </article>
+  );
+}
+
+function BottomNav() {
+  const items = [
+    { icon: Home, label: "หน้าแรก" },
+    { icon: Calendar, label: "จองคิว" },
+    { icon: CalendarCheck ,label: "จองทั้งหมด"},
+    { icon: User2, label: "บัญชีฉัน" },
+  ];
+  return (
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-sm bg-pink-50/80 backdrop-blur border-t border-pink-100">
+      <ul className="flex items-center justify-around py-2">
+        {items.map(({ icon: Icon, label }) => (
+          <li key={label} className="flex flex-col items-center gap-1">
+            <Icon className="h-5 w-5 text-pink-600" />
+            <span className="text-[11px] text-pink-700">{label}</span>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
