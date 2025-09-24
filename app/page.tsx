@@ -4,7 +4,7 @@ import { Home, CalendarCheck, Images, User2, Calendar1, Calendar } from "lucide-
 
 export default function HomePage() {
   return (
-    <main className="mx-auto max-w-sm bg-white min-h-screen shadow-sm">
+    <main className="mx-auto bg-white min-h-screen shadow-sm">
       <section className="relative">
   <div className="h-35 bg-gradient-to-b from-pink-200 to-pink-50 flex items-center justify-center">
     
@@ -17,7 +17,9 @@ export default function HomePage() {
     />
   </div>
    <div className="h-2" />
-   <img src="/card.png" alt="" />
+   <img src="/card.png" alt=""
+   
+   className=" object-center"  />
   <div className="h-5" />
 </section>
 
@@ -98,7 +100,7 @@ function BottomNav() {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-sm bg-pink-50/80 backdrop-blur border-t border-pink-100">
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full bg-pink-50/80 backdrop-blur border-t border-pink-100">
       <ul className="flex items-center justify-around py-2">
         {items.map(({ icon: Icon, label, href }) => (
           <li key={label}>
