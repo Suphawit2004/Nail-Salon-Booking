@@ -1,29 +1,30 @@
+// app/page.tsx  (หรือ pages/index.tsx ถ้าใช้ Pages Router)
+"use client";
 
 import Image from "next/image";
-import { Home, CalendarCheck, Images, User2, Calendar1, Calendar } from "lucide-react";
+import Link from "next/link";
+import { Home, CalendarCheck, User2, Calendar } from "lucide-react";
 
 export default function HomePage() {
   return (
     <main className="mx-auto bg-white min-h-screen shadow-sm">
       <section className="relative">
-  <div className="h-35 bg-gradient-to-b from-pink-200 to-pink-50 flex items-center justify-center">
-    
-    <Image
-      src="/logo.png"
-      alt="logo"
-      width={160}
-      height={120}
-      className="object-contain"
-    />
-  </div>
-   <div className="h-2" />
-   <img src="/card.png" alt=""
-   
-   className=" object-center"  />
-  <div className="h-5" />
-</section>
+        <div className="h-35 bg-gradient-to-b from-pink-200 to-pink-50 flex items-center justify-center">
+          <Image
+            src="/logo.png"
+            alt="logo"
+            width={160}
+            height={120}
+            className="object-contain"
+          />
+        </div>
 
-      
+        <div className="h-2" />
+        <img src="/card.png" alt="" className="object-center" />
+        <div className="h-5" />
+      </section>
+
+      {/* ผลงาน */}
       <section className="px-4 mt-6">
         <h2 className="text-sm font-semibold text-gray-600 mb-3">ผลงาน</h2>
         <div className="rounded-3xl border border-pink-100 shadow-sm bg-white p-3">
@@ -33,35 +34,42 @@ export default function HomePage() {
                 key={i}
                 className="aspect-square overflow-hidden rounded-2xl ring-1 ring-pink-100"
               >
-                <Image src={src} alt={`work-${i + 1}`} width={300} height={300} className="h-full w-full object-cover" />
+                <Image
+                  src={src}
+                  alt={`work-${i + 1}`}
+                  width={300}
+                  height={300}
+                  className="h-full w-full object-cover"
+                />
               </div>
             ))}
           </div>
           <div className="text-right mt-2">
-            <a className="text-xs text-pink-600 hover:underline" href="#">
+            <Link className="text-xs text-pink-600 hover:underline" href="/gallery">
               เพิ่มเติม
-            </a>
+            </Link>
           </div>
         </div>
       </section>
 
-    
-      <section className="px-4 mt-6 pb-24 ">
+      {/* ไอเดีย/บทความ */}
+      <section className="px-4 mt-6 pb-24">
         <div className="grid grid-cols-2 gap-4">
           <IdeaCard
             img="/Idea1.png"
             title="มัดรวม 50+ ไอเดียลายเล็บฮาโลวีนสุดเก๋ เอาใจสายทำเล็บ"
-            desc="สำหรับใครที่กำลังมองหาไอเดียลายเล็บทำต้อนรับวันฮาโลวีนวันนี้เราเอามาฝากเพื่อน ๆ กันค่ะ 
-            เพราะเดือนตุลาคมมีเทศกาลประจำเดือนอย่าง “ฮาโลวีน” ที่กำลังจะมาถึง"
+            desc={`สำหรับใครที่กำลังมองหาไอเดียลายเล็บทำต้อนรับวันฮาโลวีนวันนี้เราเอามาฝากเพื่อน ๆ กันค่ะ 
+เพราะเดือนตุลาคมมีเทศกาลประจำเดือนอย่าง “ฮาโลวีน” ที่กำลังจะมาถึง`}
           />
           <IdeaCard
             img="/Idea2.png"
             title="ไอเดียทาเล็บ ลายคริสต์มาส 2024"
-            desc="จะถึงเทศกาลแห่งความสนุกสนานอย่าง คริสต์มาส ทั้งที ก็ต้องมาดู ไอเดียเล็บ ธีมคริสต์มาส🎄 สุดคิ้วท์ ไปทำรับวันคริสต์มาสกันซะหน่อย! 
-            ใครที่เตรียมเสื้อสีเขียวสีแดงไว้ใส่ในวันคริสต์มาสนี้แล้วก็อย่าลืมเพิ่มความสนุกสนานด้วยการทาเล็บเป็นลายคริสต์มาสต่างๆ กันนะคะ"
+            desc={`จะถึงเทศกาลแห่งความสนุกสนานอย่าง คริสต์มาส ทั้งที ก็ต้องมาดู ไอเดียเล็บ ธีมคริสต์มาส🎄 สุดคิ้วท์ ไปทำรับวันคริสต์มาสกันซะหน่อย! 
+ใครที่เตรียมเสื้อสีเขียวสีแดงไว้ใส่ในวันคริสต์มาสนี้แล้วก็อย่าลืมเพิ่มความสนุกสนานด้วยการทาเล็บเป็นลายคริสต์มาสต่างๆ กันนะคะ`}
           />
         </div>
       </section>
+
       <BottomNav />
     </main>
   );
@@ -104,13 +112,13 @@ function BottomNav() {
       <ul className="flex items-center justify-around py-2">
         {items.map(({ icon: Icon, label, href }) => (
           <li key={label}>
-            <a
+            <Link
               href={href}
               className="flex flex-col items-center gap-1 hover:text-pink-800"
             >
               <Icon className="h-5 w-5 text-pink-600" />
               <span className="text-[11px] text-pink-700">{label}</span>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
