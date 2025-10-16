@@ -71,7 +71,7 @@ export default function AllBookingsPage() {
                 </div>
               </div>
               <div className="flex gap-2">
-                {b.status !== "CANCELLED" and (
+                {b.status !== "CANCELLED" && (
                   <button onClick={() => cancelOne(b.id)} className="px-3 py-1.5 rounded-lg text-xs border border-gray-200 hover:bg-gray-50">
                     ยกเลิก
                   </button>
