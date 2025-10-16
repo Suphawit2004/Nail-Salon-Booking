@@ -1,0 +1,1 @@
+// All bookings page
