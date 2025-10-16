@@ -15,8 +15,7 @@ type Booking = {
   status: "PENDING" | "CONFIRMED" | "CANCELLED";
 };
 
-const priceOf = (serviceId: string) =>
-  serviceId === "svc-01" ? 890 : serviceId === "svc-02" ? 690 : 490;
+const priceOf = (serviceId: string) => serviceId === "svc-01" ? 890 : serviceId === "svc-02" ? 690 : 490;
 
 export default function PaymentPage() {
   const { id } = useParams<{ id: string }>();
@@ -77,14 +76,8 @@ export default function PaymentPage() {
               <div className="font-semibold text-gray-800 text-lg">{booking.serviceTitle}</div>
 
               <div className="mt-2 space-y-2 text-sm text-gray-700">
-                <div className="flex items-center gap-2">
-                  <CalendarDays className="h-4 w-4 text-pink-500" />
-                  <span>{booking.date}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-pink-500" />
-                  <span>{booking.time}</span>
-                </div>
+                <div className="flex items-center gap-2"><CalendarDays className="h-4 w-4 text-pink-500" /><span>{booking.date}</span></div>
+                <div className="flex items-center gap-2"><Clock className="h-4 w-4 text-pink-500" /><span>{booking.time}</span></div>
               </div>
 
               <div className="mt-3 border-t border-pink-100 pt-2 flex justify-end text-sm">
@@ -112,12 +105,8 @@ export default function PaymentPage() {
         </div>
 
         <div className="mt-6 flex justify-center gap-3">
-          <button onClick={cancelBooking} className="px-5 py-2 rounded-xl border border-pink-200 text-sm hover:bg-pink-50">
-            ยกเลิก
-          </button>
-          <button onClick={confirmPayment} className="px-6 py-2 rounded-xl bg-pink-400 text-white text-sm font-semibold hover:bg-pink-500">
-            ยืนยัน
-          </button>
+          <button onClick={cancelBooking} className="px-5 py-2 rounded-xl border border-pink-200 text-sm hover:bg-pink-50">ยกเลิก</button>
+          <button onClick={confirmPayment} className="px-6 py-2 rounded-xl bg-pink-400 text-white text-sm font-semibold hover:bg-pink-500">ยืนยัน</button>
         </div>
       </section>
     </main>

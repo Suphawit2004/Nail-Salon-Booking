@@ -11,9 +11,8 @@ export type Booking = {
   status: "PENDING" | "CONFIRMED" | "CANCELLED";
 };
 
-async function ensureFile() {
-  try { await fs.access(DB_PATH); }
-  catch { await fs.writeFile(DB_PATH, "[]", "utf8"); }
+async function ensureFile(){
+  try{ await fs.access(DB_PATH); } catch{ await fs.writeFile(DB_PATH, "[]", "utf8"); }
 }
 
 export async function readBookings(): Promise<Booking[]> {
@@ -22,7 +21,7 @@ export async function readBookings(): Promise<Booking[]> {
   try { return JSON.parse(txt) as Booking[]; } catch { return []; }
 }
 
-export async function writeBookings(data: Booking[]) {
+export async function writeBookings(data: Booking[]){
   await ensureFile();
   await fs.writeFile(DB_PATH, JSON.stringify(data, null, 2), "utf8");
 }
