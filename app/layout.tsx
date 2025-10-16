@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nail Salon Booking",
-  description: "Booking demo with Next.js App Router",
+  title: "Min Nail Salon",
+  description: "Nail salon booking with pink theme",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

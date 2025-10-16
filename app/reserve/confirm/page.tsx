@@ -1,0 +1,59 @@
+"use client";
+
+import { useSearchParams, useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { CalendarDays, Clock, User2 } from "lucide-react";
+
+export default function ConfirmPage(){
+  const q = useSearchParams();
+  const router = useRouter();
+  const serviceId = q.get("serviceId") ?? "";
+  const title = serviceId==="svc-01" ? "ถอดPVC และต่อเล็บ" : serviceId==="svc-02" ? "ถอดPVC ทาสีเจล" : "ทาสีเจล";
+  const date = q.get("date") ?? "";
+  const time = q.get("time") ?? "";
+
+  const handleCreate = async ()=>{
+    const res = await fetch("/api/bookings", { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify({ serviceId, serviceTitle:title, date, time }) });
+    const bk = await res.json();
+    if(!res.ok){ alert("สร้างการจองไม่สำเร็จ"); return; }
+    router.push(`/payment/${bk.id}`);
+  };
+
+  return (
+    <main className="mx-auto max-w-screen-sm min-h-screen bg-white">
+      <header className="w-full">
+        <div className="h-36 w-full bg-gradient-to-b from-pink-200 to-pink-50 flex items-center justify-center">
+          <Image src="/logo.png" alt="logo" width={160} height={120} className="object-contain"/>
+        </div>
+      </header>
+
+      <section className="px-4 pt-4 pb-28">
+        <h2 className="text-sm font-semibold text-pink-600 mb-3">ยืนยันการจอง</h2>
+
+        <div className="rounded-3xl border border-pink-100 shadow-[0_6px_14px_rgba(255,182,193,0.25)] bg-pink-50/60 p-4">
+          <div className="flex gap-3">
+            <div className="relative w-[96px] h-[96px] rounded-2xl bg-white ring-1 ring-pink-100 overflow-hidden">
+              <Image src="/nail-blank.png" alt="thumb" fill className="object-cover"/>
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-gray-800 text-lg">{title}</h3>
+              <div className="mt-3 space-y-2 text-sm text-gray-700">
+                <div className="flex items-center gap-2"><CalendarDays className="h-4 w-4 text-pink-500"/><span>{date || "xx/xx/xxxx"}</span></div>
+                <div className="flex items-center gap-2"><Clock className="h-4 w-4 text-pink-500"/><span>{time || "00:00"}</span></div>
+                <div className="flex items-center gap-2"><User2 className="h-4 w-4 text-pink-500"/><span>1 ท่าน</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 flex justify-center">
+            <button onClick={handleCreate} className="px-6 py-2 rounded-xl bg-pink-400 text-white text-sm font-semibold hover:bg-pink-500 shadow-sm">ยืนยันจอง</button>
+          </div>
+          <div className="mt-3 text-center">
+            <Link href={`/reserve?serviceId=${serviceId}&date=${date}&time=${time}`} className="text-xs text-pink-600 underline">กลับไปแก้ไข</Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
