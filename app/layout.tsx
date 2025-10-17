@@ -3,12 +3,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Min Nail Salon",
-  description: "Nail salon booking with pink theme",
+  description: "Nail salon booking app",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="th">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </head>
       <body>{children}</body>
     </html>
   );

@@ -2,16 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Home, CalendarCheck, User2, Calendar } from "lucide-react";
+import LayoutWrapper from "./components/LayoutWrapper";
 
 export default function HomePage() {
   return (
-    <main className="mx-auto min-h-screen bg-white text-gray-800">
-      <Header />
-
-      {/* Banner */}
-      <section className="px-4 mt-4">
-        <div className="mx-auto max-w-screen-sm rounded-[28px] bg-pink-50 border border-pink-100 shadow-[0_6px_14px_rgba(255,182,193,0.25)] p-4 sm:p-6">
+    <LayoutWrapper>
+      <section className="mt-4">
+        <div className="rounded-[28px] bg-pink-50 border border-pink-100 shadow-[0_6px_14px_rgba(255,182,193,0.25)] p-4 sm:p-6">
           <div className="grid grid-cols-[110px_1fr] gap-4 items-center">
             <div className="relative h-[110px] w-[110px] rounded-2xl bg-white ring-1 ring-pink-100 overflow-hidden">
               <Image src="/banner-nail.jpg" alt="banner" fill className="object-cover" />
@@ -28,14 +25,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Works */}
-      <section className="px-4 mt-6">
-        <div className="mx-auto max-w-screen-sm rounded-[22px] bg-white border border-gray-100 shadow-sm p-4">
+      <section className="mt-6">
+        <div className="rounded-[22px] bg-white border border-gray-100 shadow-sm p-4">
           <h2 className="text-sm font-semibold text-gray-800 mb-3 text-center">ผลงาน</h2>
           <div className="grid grid-cols-3 gap-3">
             {["/work1.jpg","/work2.jpg","/work3.jpg"].map((src,i)=>(
               <div key={i} className="aspect-square overflow-hidden rounded-2xl ring-1 ring-pink-100">
-                <Image src={src} alt={"work-"+(i+1)} width={300} height={300} className="h-full w-full object-cover"/>
+                <Image src={src} alt={`work-${i+1}`} width={300} height={300} className="h-full w-full object-cover"/>
               </div>
             ))}
           </div>
@@ -45,16 +41,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Articles */}
-      <section className="px-4 mt-6 pb-24">
-        <div className="mx-auto max-w-screen-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <section className="mt-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <IdeaCard img="/Idea1.png" title="รวม 50+ ไอเดียเล็บฮาโลวีน" desc="โทนดำ-ส้ม-ม่วง เพิ่มสติ๊กเกอร์หรือกลิตเตอร์นิด ๆ เข้าธีมสุด ๆ" />
           <IdeaCard img="/Idea2.png" title="ไอเดียเล็บ คริสต์มาส 2024" desc="ธีมเขียว-แดง-ขาว คุมโทนคิ้วท์ ๆ ใส่ได้ทุกโทนผิว" />
         </div>
       </section>
-
-      <BottomNav />
-    </main>
+    </LayoutWrapper>
   );
 }
 
@@ -69,33 +62,5 @@ function IdeaCard({img,title,desc}:{img:string;title:string;desc:string;}){
         <p className="text-sm text-gray-500 mt-1 leading-relaxed line-clamp-3">{desc}</p>
       </div>
     </article>
-  );
-}
-
-function Header(){
-  return (
-    <header className="w-full">
-      <div className="h-36 w-full bg-gradient-to-b from-pink-200 to-pink-50 flex items-center justify-center">
-        <Image src="/logo.png" alt="logo" width={160} height={120} className="object-contain"/>
-      </div>
-    </header>
-  );
-}
-
-function BottomNav(){
-  const items=[
-    {icon:Home,label:"หน้าแรก",href:"/"},
-    {icon:Calendar,label:"นัดหมาย",href:"/booking"},
-    {icon:CalendarCheck,label:"จองทั้งหมด",href:"/all-bookings"},
-    {icon:User2,label:"บัญชีฉัน",href:"/account"},
-  ];
-  return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full bg-pink-50/80 backdrop-blur border-t border-pink-100">
-      <ul className="mx-auto max-w-screen-sm flex items-center justify-around py-2">
-        {items.map(({icon:Icon,label,href})=>(
-          <li key={label}><Link href={href} className="flex flex-col items-center gap-1 hover:text-pink-800"><Icon className="h-5 w-5 text-pink-600"/><span className="text-[11px] text-pink-700">{label}</span></Link></li>
-        ))}
-      </ul>
-    </nav>
   );
 }

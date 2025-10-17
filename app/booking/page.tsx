@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import LayoutWrapper from "../components/LayoutWrapper";
 
 type Service = { id:string; title:string; bullets:string[]; note?:string };
 
@@ -13,37 +14,29 @@ const SERVICES:Service[]=[
 
 export default function BookingPage(){
   return (
-    <main className="mx-auto min-h-screen max-w-screen-sm bg-white text-gray-800">
-      <header className="w-full">
-        <div className="h-36 w-full bg-gradient-to-b from-pink-200 to-pink-50 flex items-center justify-center">
-          <Image src="/logo.png" alt="logo" width={160} height={120} className="object-contain"/>
-        </div>
-      </header>
-
-      <section className="px-4 pt-4 pb-24">
-        <h2 className="text-sm font-semibold text-pink-600 mb-3">เลือกบริการ</h2>
-        <div className="space-y-5">
-          {SERVICES.map(s=>(
-            <article key={s.id} className="rounded-3xl border border-pink-100 bg-pink-50/65 shadow-[0_6px_14px_rgba(255,182,193,0.25)] p-4">
-              <div className="flex gap-4">
-                <div className="relative w-[90px] h-[90px] rounded-2xl bg-white ring-1 ring-pink-100 overflow-hidden">
-                  <Image src="/nail-blank.png" alt="thumb" fill className="object-cover"/>
+    <LayoutWrapper>
+      <h2 className="text-sm font-semibold text-pink-600 mb-3 mt-4">เลือกบริการ</h2>
+      <div className="space-y-5">
+        {SERVICES.map(s=>(
+          <article key={s.id} className="rounded-3xl border border-pink-100 bg-pink-50/65 shadow-[0_6px_14px_rgba(255,182,193,0.25)] p-4">
+            <div className="flex gap-4">
+              <div className="relative w-[90px] h-[90px] rounded-2xl bg-white ring-1 ring-pink-100 overflow-hidden">
+                <Image src="/nail-blank.png" alt="thumb" fill className="object-cover"/>
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-gray-800">{s.title}</h3>
+                <div className="rounded-2xl bg-white border border-pink-100 p-3 mt-1 text-[13px] text-gray-600">
+                  <ul className="list-disc pl-5 space-y-0.5">{s.bullets.map((b,i)=>(<li key={i}>{b}</li>))}</ul>
+                  {s.note && <p className="text-[12px] text-gray-400 mt-2">{s.note}</p>}
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-gray-800">{s.title}</h3>
-                  <div className="rounded-2xl bg-white border border-pink-100 p-3 mt-1 text-[13px] text-gray-600">
-                    <ul className="list-disc pl-5 space-y-0.5">{s.bullets.map((b,i)=>(<li key={i}>{b}</li>))}</ul>
-                    {s.note && <p className="text-[12px] text-gray-400 mt-2">{s.note}</p>}
-                  </div>
-                  <div className="mt-2 flex justify-end">
-                    <Link href={`/reserve?serviceId=${s.id}`} className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-pink-400 hover:bg-pink-500 shadow-sm">จอง</Link>
-                  </div>
+                <div className="mt-2 flex justify-end">
+                  <Link href={`/reserve?serviceId=${s.id}`} className="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-pink-400 hover:bg-pink-500 shadow-sm">จอง</Link>
                 </div>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
-    </main>
+            </div>
+          </article>
+        ))}
+      </div>
+    </LayoutWrapper>
   );
 }
