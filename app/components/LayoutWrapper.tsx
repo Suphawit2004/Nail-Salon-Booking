@@ -16,7 +16,6 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
-      {/* Header */}
       <header className="w-full bg-gradient-to-b from-pink-200 to-pink-50 shadow-md">
         <div className="flex items-center justify-center py-4">
           <Image
@@ -29,12 +28,10 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="flex-1 w-full max-w-screen-sm mx-auto px-4 pb-32">
         {children}
       </main>
 
-      {/* Bottom Navigation */}
       <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-50">
         <div className="relative mx-auto max-w-screen-sm bg-gradient-to-t from-pink-200 to-pink-50 shadow-[0_-4px_10px_rgba(255,182,193,0.25)] border-t border-pink-100 backdrop-blur-md rounded-t-2xl">
           <ul className="flex items-center justify-around py-2">

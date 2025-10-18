@@ -40,27 +40,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <section className="mt-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <IdeaCard img="/Idea1.png" title="รวม 50+ ไอเดียเล็บฮาโลวีน" desc="โทนดำ-ส้ม-ม่วง เพิ่มสติ๊กเกอร์หรือกลิตเตอร์นิด ๆ เข้าธีมสุด ๆ" />
-          <IdeaCard img="/Idea2.png" title="ไอเดียเล็บ คริสต์มาส 2024" desc="ธีมเขียว-แดง-ขาว คุมโทนคิ้วท์ ๆ ใส่ได้ทุกโทนผิว" />
-        </div>
-      </section>
     </LayoutWrapper>
-  );
-}
-
-function IdeaCard({img,title,desc}:{img:string;title:string;desc:string;}){
-  return (
-    <article className="rounded-3xl border border-gray-100 shadow-sm overflow-hidden bg-white">
-      <div className="relative h-28 w-full">
-        <Image src={img} alt={title} fill className="object-cover" />
-      </div>
-      <div className="p-4">
-        <h3 className="font-semibold text-gray-800">{title}</h3>
-        <p className="text-sm text-gray-500 mt-1 leading-relaxed line-clamp-3">{desc}</p>
-      </div>
-    </article>
   );
 }
